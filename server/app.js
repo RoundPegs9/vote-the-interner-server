@@ -23,7 +23,7 @@ app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 var MemoryStore = require("memorystore")(require('express-session'));
 
 app.use(require("express-session")({
-   secret : "ewoifj3289ohisd",
+   secret : process.env.expressSECRET,
    store: new MemoryStore({
     checkPeriod: 86400000 // prune expires entries every 24h
   }),
