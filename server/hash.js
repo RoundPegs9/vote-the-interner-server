@@ -18,7 +18,7 @@ class Hash {
             hash_Int += (hash_Int*this.X + data.charCodeAt(i))%this.P;
             
         }
-        return hash_Int;
+        return parseInt(hash_Int);
     }
     /**
      * Sets the index multiplication for primal value for str hash function.
