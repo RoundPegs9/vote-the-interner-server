@@ -176,6 +176,17 @@ app.get("/", (req, res)=>{
     });
 });
 
+
+//********************************************************************DEFAULT ROUTES*************************************************************************** */
+
+app.get("*", (req, res)=>{
+    return res.send("Invalid API route");
+});
+
+app.post("*", (req, res)=>{
+    return res.send("Invalid API route");
+});
+
 //********************************************************************LAUNCH SERVER*************************************************************************** */
 app.listen(process.env.PORT || 2622, process.env.IP,()=>{
     console.log("Server Connected at port 2622");
