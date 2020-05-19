@@ -144,10 +144,12 @@ app.post("/upvote", (req, res)=>{
 
                 let sendData = {
                     host : {
+                        url : hashed_host_query,
                         upvotes : newLink.host.upvotes,
                         downvotes : newLink.host.downvotes
                     },
                     path : {
+                        url : hashed_path_query,
                         upvotes : pathUpvoteCount,
                         downvotes : pathDownvoteCount
                     }
@@ -187,10 +189,12 @@ app.post("/upvote", (req, res)=>{
 
                 let sendData = {
                     host : {
+                        url : hashed_host_query,
                         upvotes : foundLink.host.upvotes,
                         downvotes : foundLink.host.downvotes
                     },
                     path : {
+                        url : hashed_path_query,
                         upvotes : pathUpvoteCount,
                         downvotes : pathDownvoteCount
                     }
@@ -251,10 +255,12 @@ app.post("/downvote", (req, res)=>{
 
                 let sendData = {
                     host : {
+                        url : hashed_host_query,
                         upvotes : newLink.host.upvotes,
                         downvotes : newLink.host.downvotes
                     },
                     path : {
+                        url : hashed_path_query,
                         upvotes : pathUpvoteCount,
                         downvotes : pathDownvoteCount
                     }
@@ -293,10 +299,12 @@ app.post("/downvote", (req, res)=>{
 
                 let sendData = {
                     host : {
+                        url : hashed_host_query,
                         upvotes : foundLink.host.upvotes,
                         downvotes : foundLink.host.downvotes
                     },
                     path : {
+                        url : hashed_path_query,
                         upvotes : pathUpvoteCount,
                         downvotes : pathDownvoteCount
                     }
@@ -339,10 +347,12 @@ app.get("/stats", (req, res)=>{
             });
             let sendData = {
                 host : {
+                    url : hashed_host_query,
                     upvotes : foundLink.host.upvotes,
                     downvotes : foundLink.host.downvotes
                 },
                 path : {
+                    url : hashed_path_query,
                     upvotes : pathUpvoteCount,
                     downvotes : pathDownvoteCount
                 }
