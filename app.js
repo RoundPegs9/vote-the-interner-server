@@ -4,6 +4,7 @@ const express = require("express"),
     Hash = require("./hash"),
     Link = require("./models/link"),
     bodyParser = require("body-parser"),
+    request = require("request"),
     dotenv = require("dotenv");
 
 
@@ -63,6 +64,15 @@ mongoose.set('useFindAndModify', false);
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://"+process.env.mongoDB+"/vote-the-internet",{ useNewUrlParser: true , useUnifiedTopology: true});
+
+/**
+ * Constant 10 minute Heroku based request for minimized load times.
+ * Removes server idling.
+ */
+setInterval(() => {
+    request(process.env.url);
+}, 9.99*1000*60);
+
 
 
 /**
