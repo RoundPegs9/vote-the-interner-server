@@ -71,6 +71,7 @@ mongoose.connect("mongodb://"+process.env.mongoDB+"/vote-the-internet",{ useNewU
  */
 setInterval(() => {
     request(process.env.url);
+    console.debug("API loaded again");
 }, 9.99*1000*60);
 
 
