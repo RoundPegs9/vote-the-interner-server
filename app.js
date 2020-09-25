@@ -383,12 +383,11 @@ app.get("/predict", (req, res)=>{
     var query = req.query.data;
     try {
         query = JSON.parse(query);
-
         var data = [];
         for (let i = 0; i < query.length; i++) {
             data.push([i, query[i]]);
         }
-        const result = regression.linear(data);
+        const result = regression.polynomial(data, {order:5});
         const gradient = result.equation[0];
         const yIntercept = result.equation[1];
         const value = data.length*gradient + yIntercept;
