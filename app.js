@@ -396,7 +396,7 @@ app.get("/predict", (req, res)=>{
         return res.send({code : 200, data : parseFloat(value).toPrecision(3)});
 
     } catch (error) {
-        return res.send({code : 198, data : error}); //error
+        return res.send({code : 198, data : 0.0}); //error
     }
     
 });
