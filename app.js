@@ -1,3 +1,5 @@
+const { json } = require("body-parser");
+
 const express = require("express"),
     app = express(),
     mongoose = require("mongoose"),
@@ -5,6 +7,7 @@ const express = require("express"),
     Link = require("./models/link"),
     bodyParser = require("body-parser"),
     request = require("request"),
+    regression = require('regression'),
     dotenv = require("dotenv");
 
 
@@ -372,6 +375,24 @@ app.get("/stats", (req, res)=>{
         }
         return res.send({code : 198, data : null});
     });
+});
+
+//********************************************************************NEW: Regression*************************************************************************** */
+
+app.get("/predict", (req, res)=>{
+    var query = req.query.data;
+    query = JSON.parse(query);
+
+    var data = [];
+    for (let i = 0; i < query.length; i++) {
+        data.push([i, query[i]]);
+    }
+    const result = regression.linear(data);
+    const gradient = result.equation[0];
+    const yIntercept = result.equation[1];
+    const value = data.length*gradient + yIntercept;
+
+    return res.send({code : 198, data : parseFloat(value).toPrecision(3)});
 });
 
 
