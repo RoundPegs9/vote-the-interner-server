@@ -384,10 +384,15 @@ app.get("/predict", (req, res)=>{
     try {
         query = JSON.parse(query);
         var data = [];
-        for (let i = 0; i < query.length; i++) {
+        let start = 0;
+        if(query.length > 10) //get last 10 days
+        {
+            start = query.length - 11;
+        }
+        for (let i = start; i < query.length; i++) {
             data.push([i, query[i]]);
         }
-        const result = regression.polynomial(data, {order:5});
+        const result = regression.linear(data);
         const gradient = result.equation[0];
         const yIntercept = result.equation[1];
         const value = data.length*gradient + yIntercept;
