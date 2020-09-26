@@ -385,7 +385,7 @@ app.get("/predict", (req, res)=>{
         query = JSON.parse(query);
         var data = [];
 
-        for (let i = start; i < query.length; i++) {
+        for (let i = 0; i < query.length; i++) {
             data.push([i, query[i]]);
         }
         const result = regression.linear(data);
