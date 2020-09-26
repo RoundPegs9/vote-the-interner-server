@@ -408,9 +408,6 @@ app.get("/predict", (req, res)=>{
     
 });
 
-const data = [[0,1],[32, 67], [12, 79]];
-const result = regression.polynomial(data, { order: 3 })
-console.log(result.equation[0], result.equation[1], result.equation[2],result.equation[3]);
 //********************************************************************DEFAULT ROUTES*************************************************************************** */
 
 app.get("*", (req, res)=>{
