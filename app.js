@@ -392,11 +392,14 @@ app.get("/predict", (req, res)=>{
         for (let i = start; i < query.length; i++) {
             data.push([i, query[i]]);
         }
-        const result = regression.linear(data);
-        const gradient = result.equation[0];
-        const yIntercept = result.equation[1];
-        const value = data.length*gradient + yIntercept;
+        const result = regression.polynomial(data, {order:3});
+        const X = query.length;
+        let a = result.equation[0],
+            b = result.equation[1],
+            c = result.equation[2],
+            d = result.equation[3];
 
+        const value = a*Math.pow(X, 3) + b*Math.pow(X, 2) + c*Math.pow(X, 1) + d;
         return res.send({code : 200, data : parseFloat(value).toPrecision(3)});
 
     } catch (error) {
@@ -405,7 +408,9 @@ app.get("/predict", (req, res)=>{
     
 });
 
-
+const data = [[0,1],[32, 67], [12, 79]];
+const result = regression.polynomial(data, { order: 3 })
+console.log(result.equation[0], result.equation[1], result.equation[2],result.equation[3]);
 //********************************************************************DEFAULT ROUTES*************************************************************************** */
 
 app.get("*", (req, res)=>{
