@@ -384,11 +384,7 @@ app.get("/predict", (req, res)=>{
     try {
         query = JSON.parse(query);
         var data = [];
-        let start = 0;
-        if(query.length > 30) //get last 30 days
-        {
-            start = query.length - 30;
-        }
+
         for (let i = start; i < query.length; i++) {
             data.push([i, query[i]]);
         }
