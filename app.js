@@ -405,7 +405,7 @@ app.get("/predict", (req, res)=>{
 app.get("/leethub/authorize", (req, res)=>{
     var query = req.query.code;
     // pass this to welcome (chrome extension)
-    return res.send({code : 200, message : "Authorizing LeetHub with your GitHub profile", data: query});
+    return res.send({"code" : 200, "message" : "Authorizing LeetHub with your GitHub profile", "data": query});
 });
 
 //******************************************************************** DEFAULT ROUTES *************************************************************************** */
