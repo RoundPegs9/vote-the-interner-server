@@ -66,7 +66,25 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://"+process.env.mongoDB+"/vote-the-internet",{ useNewUrlParser: true , useUnifiedTopology: true});
+const URI = `mongodb+srv://${process.env.mongo_username}:${process.env.mongo_password}@cluster0.1j3r7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
+// mongoose.connect("mongodb://"+process.env.mongoDB+"/vote-the-internet",{ useNewUrlParser: true , useUnifiedTopology: true});
+const connectionParams={
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true 
+}
+// mongoose.connect(URI, connectionParams);
+// mongoose.connection.on('connected', () => console.log('Connected'));
+// mongoose.connection.on('error', (err) => console.log('Connection failed with - ',err));
+
+mongoose.connect(URI,connectionParams)
+    .then( () => {
+        console.log('Connected to database')
+    })
+    .catch( (err) => {
+        console.error(`Error connecting to the database. \n${err}`);
+    })
 
 /**
  * Constant 10 minute Heroku based request for minimized load times.
@@ -106,7 +124,7 @@ var createLink = (data)=>{
             }
             
         }
-        console.log("Successfully created new object");
+        console.log("Successfully created new object", addedLink);
     });
 };
 
