@@ -247,14 +247,10 @@ app.post("/upvote", (req, res)=>{
 //******************************************************************** DOWNVOTE *************************************************************************** */
 app.post("/downvote", (req, res)=>{
     let query = req.query.q;
-    console.log(query);
-    
     let hashed_host_query = hash.get_str_hash(query.split("/")[0]);
     
     let hashed_path_query = hash.get_str_hash(query);
     
-    console.log(hashed_host_query, hashed_path_query);
-
     Link.findOne({"host.url" : hashed_host_query}).exec((err, foundLink)=>{
         if(err)
         {
